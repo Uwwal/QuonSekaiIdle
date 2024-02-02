@@ -10,7 +10,6 @@ class StartupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: darkBlueBackgroundColor,
       body: Align(
         alignment: Alignment.center,
         child: Padding(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quon_sekai_idle/pages/startup_page.dart';
 import 'package:quon_sekai_idle/routes/main_route.dart';
+import 'package:quon_sekai_idle/themes/custom_theme.dart';
 
 
 void main() {
@@ -17,12 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // title: 'QuonSekaiIdle',
-      theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
+      theme: customTheme,
       // home: const MyHomePage(title: "Flutter Home Page"),
-      home: StartupPage(),
+      home: const StartupPage(),
       routes: mainRoute,
       debugShowCheckedModeBanner: false,
     );
