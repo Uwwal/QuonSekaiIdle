@@ -15,9 +15,24 @@ class _GamePageState extends State<GamePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
+          // TODO: ...
           widget.playerName
         ),
       ),
+      body: const Column(
+          children: [
+            // world preview
+            SizedBox(height: 60,),
+            // main ui
+            Column(
+              children: [
+                Row(
+                  // navigator
+                ),
+              ],
+            ),
+          ],
+      )
     );
   }
 }
