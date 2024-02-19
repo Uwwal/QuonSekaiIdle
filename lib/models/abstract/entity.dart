@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:quon_sekai_idle/models/enum/body_part.dart';
@@ -13,11 +14,13 @@ import '../world/combat/slot_repository.dart';
 import 'equipment.dart';
 
 abstract class Entity {
+  int id;
+
   int hp;
   int maxHp;
 
-  int maxSlot;
-  SlotRepository slotRepository;
+  int maxSlotLen;
+  late SlotRepository slotRepository;
 
   int level;
 
@@ -48,14 +51,16 @@ abstract class Entity {
 
   late Entity target;
 
-  Entity(this.maxHp, this.slotRepository, this.level, this.actionInterval,
+  bool executeCombat = false;
+
+  Entity(this.id, this.maxHp, this.maxSlotLen, this.level, this.actionInterval,
       this.combatActionList, List<double> status,
       {Map<BodyPart, Equipment>? equipmentMap})
       : hp = maxHp,
-        maxSlot = slotRepository.len,
         combatActionCoolDownList =
             List<int>.generate(combatActionList.length, (_) => 0),
         equipmentMap = equipmentMap ?? {} {
+    slotRepository = SlotRepository(maxSlotLen);
     spd = _calculateSpd();
     setStatusFromList(this, status);
 
@@ -72,10 +77,8 @@ abstract class Entity {
     return actionInterval;
   }
 
-  int _action({int? lastFailActionListMinCoolDown}) {
+  int _action(int curActionInterval) {
     // 返回: 执行成功 ? -1 : minCoolDown
-    var curActionInterval =
-        lastFailActionListMinCoolDown ?? _getActionInterval();
     var minCoolDown = curActionInterval;
 
     var finish = false;
@@ -150,7 +153,35 @@ abstract class Entity {
 
   void _handleHpBelowZero() => finishCombat();
 
-  void finishCombat(){}
+  void finishCombat() {
+    executeCombat = false;
+  }
 
-  void startFight(Entity target){}
+  Future<void> startCombat() async {
+    executeCombat = true;
+    int curActionInterval = -1;
+    while (executeCombat) {
+      await Future.delayed(Duration(milliseconds: curActionInterval));
+      if (curActionInterval == -1) {
+        curActionInterval = _getActionInterval();
+      }
+      curActionInterval = _action(curActionInterval);
+    }
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if(identical(this, other)){return true;}
+    switch(other.runtimeType){
+      case Entity:
+        return id == (other as Entity).id;
+      case int:
+        return id == other;
+      default:
+        throw Error();
+    }
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }

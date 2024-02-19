@@ -2,7 +2,7 @@ import '../models/world/combat/action.dart';
 import '../models/world/combat/slot_repository.dart';
 
 const defaultMaxHp = 20;
-final defaultSlotList = SlotRepository(5);
+final defaultSlotList = 5;
 const defaultLevel = 1;
 const defaultActionInterval = 1000;
 final List<CombatAction> defaultCombatActionList = [];

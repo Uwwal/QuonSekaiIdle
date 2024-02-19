@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:quon_sekai_idle/models/world/combat/slot_repository.dart';
+import 'package:quon_sekai_idle/models/world/world.dart';
 
 import '../../constants/player_constants.dart';
 import '../abstract/entity.dart';
 import 'combat/action.dart';
 
 class Player extends Entity {
+  /* static instance start */
   static final Player _player = Player._internal(
       defaultMaxHp,
       defaultSlotList,
@@ -17,22 +21,45 @@ class Player extends Entity {
 
   Player._internal(
       int maxHp,
-      SlotRepository slotRepository,
+      int maxSlotLen,
       int level,
       int actionInterval,
       List<CombatAction> combatActionList,
       List<double> status)
-      : super(maxHp, slotRepository, level, actionInterval, combatActionList,
+      : super(-1, maxHp, maxSlotLen, level, actionInterval, combatActionList,
             status);
 
   static Player getPlayerInstance() {
     return _player;
   }
+  /* static instance over */
+  /* override start */
+  // 用于中断寻敌计时器
+  bool executeFindEnemy = false;
 
   @override
   void finishCombat() {
     super.finishCombat();
+
+    if(hp > 0){
+      // todo 获得战利品
+    }
+    findEnemy();
   }
 
-  void
+  int _getEnemyCoolDown(){
+    // todo 固定数值*属性减免
+    return 1000;
+  }
+
+  void findEnemy(){
+    executeFindEnemy = true;
+    Timer(Duration(milliseconds: _getEnemyCoolDown()), (){
+      if(executeFindEnemy){
+        target = World.getWorldInstance().generateEnemy();
+        startCombat();
+      }
+    });
+  }
+  /* override over */
 }
