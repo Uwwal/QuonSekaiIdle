@@ -5,6 +5,14 @@ import 'package:quon_sekai_idle/models/world/player.dart';
 import '../../../instances/enemy_instances.dart';
 import '../../abstract/entity.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+
+import '../../enum/body_part.dart';
+import 'effect_list.dart';
+
+part 'enemy.g.dart';
+
+@JsonSerializable()
 class Enemy extends Entity implements Comparable<Enemy>{
   Enemy(id, maxHp, maxSlotLen, level, actionInterval, combatActionList, status, {equipmentMap})
       : super(id, maxHp, maxSlotLen, level, actionInterval, combatActionList, status, equipmentMap: equipmentMap) {
@@ -15,8 +23,32 @@ class Enemy extends Entity implements Comparable<Enemy>{
   int compareTo(Enemy other) {
     return id - other.id;
   }
+
+  factory Enemy.fromJson(Map<String, dynamic> json) => Enemy(
+  json['id'],
+  json['maxHp'],
+  json['maxSlotLen'],
+  json['level'],
+  json['actionInterval'],
+  json['combatActionList'],
+  json['status'],
+  equipmentMap: json['equipmentMap'],
+  );
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'hp': hp,
+    'maxHp': maxHp,
+    'maxSlotLen': maxSlotLen,
+    'level': level,
+    'actionInterval': actionInterval,
+    'combatActionList': combatActionList,
+    'status': status.toJson(),
+    'equipmentMap': equipmentMap
+        .map((k, e) => MapEntry(_$BodyPartEnumMap[k]!, e)),
+  };
 }
 
+@JsonSerializable()
 class EnemyList {
   List<int> enemyList;
   List<int> weightList;
@@ -27,6 +59,9 @@ class EnemyList {
   EnemyList(this.enemyList, this.weightList)
       : sum = weightList.reduce((value, element) => value + element),
         len = enemyList.length;
+
+  factory EnemyList.fromJson(Map<String, dynamic> json) => _$EnemyListFromJson(json);
+  Map<String, dynamic> toJson() => _$EnemyListToJson(this);
 
   Enemy generateEnemy() {
     var random = Random().nextInt(sum);

@@ -1,9 +1,13 @@
 import 'dart:math';
 
+import 'package:json_annotation/json_annotation.dart';
 import 'package:quon_sekai_idle/models/enum/damage_type.dart';
 
 import 'damage.dart';
 
+part 'damage_dice.g.dart';
+
+@JsonSerializable()
 class DamageDice{
   DamageType type;
 
@@ -22,5 +26,8 @@ class DamageDice{
     }
     return Damage(type, res);
   }
+
+  factory DamageDice.fromJson(Map<String, dynamic> json) => _$DamageDiceFromJson(json);
+  Map<String, dynamic> toJson() => _$DamageDiceToJson(this);
 }
 

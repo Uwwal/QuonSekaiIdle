@@ -1,8 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:quon_sekai_idle/models/world/combat/slot.dart';
 import 'package:quon_sekai_idle/utils/combat_slot_util.dart';
 
 import '../../../utils/tuple_util.dart';
 import '../../enum/slot_type.dart';
+
+part 'slot_repository.g.dart';
 
 class SlotRepository {
   Slot? head;
@@ -92,8 +95,10 @@ class SlotRepository {
     slotMap[defaultType]!.sort();
   }
 
-  bool hasEnoughSlots(SlotTupleList consumeSlotTupleList,
-      SlotTupleList createSlotTupleList,) {
+  bool hasEnoughSlots(
+    SlotTupleList consumeSlotTupleList,
+    SlotTupleList createSlotTupleList,
+  ) {
     num consumeNum = getTypeSlotNum(defaultType);
     for (var tuple in consumeSlotTupleList.list) {
       var slot = tuple[0];
@@ -156,8 +161,13 @@ class SlotRepository {
   }
 }
 
-class SlotTupleList{
+@JsonSerializable()
+class SlotTupleList {
   List<Tuple<Slot, int>> list;
 
   SlotTupleList(this.list);
+
+  factory SlotTupleList.fromJson(Map<String, dynamic> json) =>
+      _$SlotTupleListFromJson(json);
+  Map<String, dynamic> toJson() => _$SlotTupleListToJson(this);
 }

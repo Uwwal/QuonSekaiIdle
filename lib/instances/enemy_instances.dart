@@ -1,6 +1,7 @@
 import '../models/world/combat/enemy.dart';
 import 'dart:convert';
 
+// 对比用
 /*
 Enemy(super.id, super.maxHp, super.maxSlotLen, super.level, super.actionInterval,
     super.combatActionList, super.status, {super.equipmentMap}) {

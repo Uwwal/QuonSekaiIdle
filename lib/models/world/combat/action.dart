@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:quon_sekai_idle/models/world/combat/slot_repository.dart';
 
+part 'action.g.dart';
+
+@JsonSerializable()
 class CombatAction {
   bool selfTarget;
 
@@ -16,4 +20,7 @@ class CombatAction {
 
   CombatAction(this.selfTarget, this.type, this.numList, this.coolDown,
       this.consumeSlot, this.createSlot);
+
+  factory CombatAction.fromJson(Map<String, dynamic> json) => _$CombatActionFromJson(json);
+  Map<String, dynamic> toJson() => _$CombatActionToJson(this);
 }

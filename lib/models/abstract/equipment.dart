@@ -1,3 +1,5 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../utils/effect_util.dart';
 import '../enum/body_part.dart';
 import '../enum/effect_type.dart';
@@ -5,7 +7,9 @@ import '../world/combat/damage.dart';
 import '../world/combat/damage_dice.dart';
 import '../world/combat/effect_list.dart';
 
-abstract class Equipment {
+part 'equipment.g.dart';
+
+class Equipment {
   void use() {
     // todo
     throw Error();
@@ -22,6 +26,9 @@ abstract class Equipment {
   Equipment(this.name, this.bodyPart, this.damageDiceList,
       {EffectList? effectList})
       : effectList = effectList ?? EffectList();
+
+  factory Equipment.fromJson(Map<String, dynamic> json) => _$EquipmentFromJson(json);
+  Map<String, dynamic> toJson() => _$EquipmentToJson(this);
 
   List<Damage> getDamage() {
     List<Damage> res = [];
@@ -42,16 +49,4 @@ abstract class Equipment {
   // int compareTo(Equipment other) {
   //   return bodyPart.index - other.bodyPart.index;
   // }
-}
-
-class EmptyHead extends Equipment {
-  EmptyHead() : super("空", BodyPart.head, []);
-}
-
-class EmptyBody extends Equipment {
-  EmptyBody() : super("皮肤", BodyPart.body, []);
-}
-
-class EmptyHand extends Equipment {
-  EmptyHand() : super("手", BodyPart.hand, []);
 }

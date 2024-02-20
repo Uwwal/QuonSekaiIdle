@@ -11,7 +11,7 @@ const String characterPageAppBarText = "创建角色";
 const String characterPageInputNameLabelText = "角色名称";
 
 const List<String> playerImageNameList = ["elephant.png", "reindeer.png"];
-const String playerImageDirPath = "lib/asserts/images/player/";
+const String playerImageDirPath = "lib/assets/images/player/";
 const String playerImagePlathHolderPath = "${playerImageDirPath}placeholder.png";
 
 const int characterPageShakingDuration = 200;

@@ -1,6 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../abstract/effect.dart';
 import '../../enum/effect_type.dart';
 
+part 'effect_list.g.dart';
+
+@JsonSerializable()
 class EffectList {
   List<Effect> list = [];
 
@@ -30,6 +35,9 @@ class EffectList {
       }
     }
   }
+
+  factory EffectList.fromJson(Map<String, dynamic> json) => _$EffectListFromJson(json);
+  Map<String, dynamic> toJson() => _$EffectListToJson(this);
 
   void addAll(EffectList other) {
     list.addAll(other.list);

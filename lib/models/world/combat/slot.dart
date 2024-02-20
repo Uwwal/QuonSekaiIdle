@@ -1,5 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../enum/slot_type.dart';
 
+part 'slot.g.dart';
+
+@JsonSerializable()
 class Slot implements Comparable<Slot>{
   int index;
   SlotType type;
@@ -8,6 +13,9 @@ class Slot implements Comparable<Slot>{
   Slot? prev;
 
   Slot({this.type = SlotType.empty, this.index = -1, this.test = '1',});
+
+  factory Slot.fromJson(Map<String, dynamic> json) => _$SlotFromJson(json);
+  Map<String, dynamic> toJson() => _$SlotToJson(this);
 
   @override
   bool operator ==(Object other) {

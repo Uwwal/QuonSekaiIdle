@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:quon_sekai_idle/models/world/combat/slot_repository.dart';
+import 'package:quon_sekai_idle/models/world/combat/status.dart';
 import 'package:quon_sekai_idle/models/world/world.dart';
 
 import '../../constants/player_constants.dart';
@@ -27,7 +27,7 @@ class Player extends Entity {
       List<CombatAction> combatActionList,
       List<double> status)
       : super(-1, maxHp, maxSlotLen, level, actionInterval, combatActionList,
-            status);
+            CombatStatus(status));
 
   static Player getPlayerInstance() {
     return _player;

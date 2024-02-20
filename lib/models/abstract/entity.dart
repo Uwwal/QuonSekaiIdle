@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:quon_sekai_idle/models/enum/body_part.dart';
+import 'package:quon_sekai_idle/models/world/combat/status.dart';
 import 'package:quon_sekai_idle/utils/effect_util.dart';
-import 'package:quon_sekai_idle/utils/entity_status_util.dart';
 import 'package:quon_sekai_idle/utils/equipment_util.dart';
 
 import '../enum/effect_type.dart';
@@ -14,6 +14,7 @@ import '../world/combat/slot_repository.dart';
 import 'equipment.dart';
 
 abstract class Entity {
+  /* field start */
   int id;
 
   int hp;
@@ -24,15 +25,6 @@ abstract class Entity {
 
   int level;
 
-  late double str;
-  late double con;
-  late double dex;
-  late double per;
-  late double ler;
-  late double wil;
-  late double mag;
-  late double chr;
-
   // 行动间隔
   int actionInterval;
 
@@ -41,6 +33,8 @@ abstract class Entity {
 
   List<CombatAction> combatActionList;
   List<int> combatActionCoolDownList;
+
+  CombatStatus status;
 
   // 战斗buff提供
   EffectList buffEffectList = EffectList();
@@ -52,21 +46,22 @@ abstract class Entity {
   late Entity target;
 
   bool executeCombat = false;
-
+  /* field over */
+  /* constructor start */
   Entity(this.id, this.maxHp, this.maxSlotLen, this.level, this.actionInterval,
-      this.combatActionList, List<double> status,
+      this.combatActionList, this.status,
       {Map<BodyPart, Equipment>? equipmentMap})
       : hp = maxHp,
         combatActionCoolDownList =
             List<int>.generate(combatActionList.length, (_) => 0),
-        equipmentMap = equipmentMap ?? {} {
+        equipmentMap = equipmentMap ?? {}{
     slotRepository = SlotRepository(maxSlotLen);
     spd = _calculateSpd();
-    setStatusFromList(this, status);
 
     ensureEmptySafeMap(this.equipmentMap);
   }
-
+  /* constructor over */
+  /* method start */
   int _calculateSpd() {
     // todo
     return 1;
@@ -184,4 +179,5 @@ abstract class Entity {
 
   @override
   int get hashCode => id.hashCode;
+  /* method over */
 }

@@ -32,7 +32,7 @@ class StartupPage extends StatelessWidget {
 
                 // Icon
                 const Image(
-                  image: AssetImage('lib/asserts/images/magic_box.png'),
+                  image: AssetImage('lib/assets/images/magic_box.png'),
                   height: startupPageIconHeight,
                 ),
 
