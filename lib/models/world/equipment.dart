@@ -3,9 +3,9 @@ import 'package:json_annotation/json_annotation.dart';
 import '../../utils/effect_util.dart';
 import '../enum/body_part.dart';
 import '../enum/effect_type.dart';
-import '../world/combat/damage.dart';
-import '../world/combat/damage_dice.dart';
-import '../world/combat/effect_list.dart';
+import 'combat/damage.dart';
+import 'combat/damage_dice.dart';
+import 'combat/effect_list.dart';
 
 part 'equipment.g.dart';
 
@@ -27,7 +27,8 @@ class Equipment {
       {EffectList? effectList})
       : effectList = effectList ?? EffectList();
 
-  factory Equipment.fromJson(Map<String, dynamic> json) => _$EquipmentFromJson(json);
+  factory Equipment.fromJson(Map<String, dynamic> json) =>
+      _$EquipmentFromJson(json);
   Map<String, dynamic> toJson() => _$EquipmentToJson(this);
 
   List<Damage> getDamage() {
@@ -50,3 +51,4 @@ class Equipment {
   //   return bodyPart.index - other.bodyPart.index;
   // }
 }
+

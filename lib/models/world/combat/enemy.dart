@@ -8,11 +8,9 @@ import '../../abstract/entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../enum/body_part.dart';
-import 'effect_list.dart';
 
 part 'enemy.g.dart';
 
-@JsonSerializable()
 class Enemy extends Entity implements Comparable<Enemy>{
   Enemy(id, maxHp, maxSlotLen, level, actionInterval, combatActionList, status, {equipmentMap})
       : super(id, maxHp, maxSlotLen, level, actionInterval, combatActionList, status, equipmentMap: equipmentMap) {
@@ -114,3 +112,9 @@ abstract class EnemyPool {
     }
   }
 }
+
+const _$BodyPartEnumMap = {
+  BodyPart.head: 'head',
+  BodyPart.body: 'body',
+  BodyPart.hand: 'hand',
+};

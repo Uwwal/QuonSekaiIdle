@@ -1,4 +1,5 @@
-import '../models/abstract/equipment.dart';
+import '../instances/equipment_instances.dart';
+import '../models/world/equipment.dart';
 import '../models/enum/body_part.dart';
 
 void ensureEmptySafeMap(Map<BodyPart, Equipment> equipmentMap) {

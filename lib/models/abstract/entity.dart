@@ -11,7 +11,7 @@ import '../world/combat/action.dart';
 import '../world/combat/damage.dart';
 import '../world/combat/effect_list.dart';
 import '../world/combat/slot_repository.dart';
-import 'equipment.dart';
+import '../world/equipment.dart';
 
 abstract class Entity {
   /* field start */

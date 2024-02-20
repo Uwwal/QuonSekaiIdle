@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../abstract/effect.dart';
+import 'effect.dart';
 import '../../enum/effect_type.dart';
 
 part 'effect_list.g.dart';
