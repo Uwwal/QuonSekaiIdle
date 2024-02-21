@@ -9,6 +9,8 @@ import 'combat/effect_list.dart';
 
 part 'equipment.g.dart';
 
+// todo clear debug
+
 class Equipment {
   void use() {
     // todo
@@ -21,11 +23,14 @@ class Equipment {
 
   List<DamageDice> damageDiceList;
 
-  EffectList effectList;
+  // EffectList effectList;
 
   Equipment(this.name, this.bodyPart, this.damageDiceList,
-      {EffectList? effectList})
-      : effectList = effectList ?? EffectList();
+      {EffectList? effectList});
+
+  // Equipment(this.name, this.bodyPart, this.damageDiceList,
+  //     {EffectList? effectList})
+  //     : effectList = effectList ?? EffectList();
 
   factory Equipment.fromJson(Map<String, dynamic> json) =>
       _$EquipmentFromJson(json);
@@ -40,11 +45,11 @@ class Equipment {
     return res;
   }
 
-  void modifyOutgoingDamage(List<Damage> damageList) =>
-      modifyDamage(damageList, EffectType.modifyOutgoingDamageNum, effectList);
-
-  void modifyIncomingDamage(List<Damage> damageList) =>
-      modifyDamage(damageList, EffectType.modifyIncomingDamageNum, effectList);
+  // void modifyOutgoingDamage(List<Damage> damageList) =>
+  //     modifyDamage(damageList, EffectType.modifyOutgoingDamageNum, effectList);
+  //
+  // void modifyIncomingDamage(List<Damage> damageList) =>
+  //     modifyDamage(damageList, EffectType.modifyIncomingDamageNum, effectList);
 
   // @override
   // int compareTo(Equipment other) {

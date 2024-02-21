@@ -11,6 +11,8 @@ EffectList _$EffectListFromJson(Map<String, dynamic> json) => EffectList(
           ?.map((e) => Effect.fromJson(e as Map<String, dynamic>))
           .toList(),
     )
+      ..durationList =
+          (json['durationList'] as List<dynamic>).map((e) => e as int).toList()
       ..modifyOutgoingDamageNum = json['modifyOutgoingDamageNum'] as int
       ..modifyIncomingDamageNum = json['modifyIncomingDamageNum'] as int
       ..modifyStatus = json['modifyStatus'] as int
@@ -19,6 +21,7 @@ EffectList _$EffectListFromJson(Map<String, dynamic> json) => EffectList(
 Map<String, dynamic> _$EffectListToJson(EffectList instance) =>
     <String, dynamic>{
       'list': instance.list,
+      'durationList': instance.durationList,
       'modifyOutgoingDamageNum': instance.modifyOutgoingDamageNum,
       'modifyIncomingDamageNum': instance.modifyIncomingDamageNum,
       'modifyStatus': instance.modifyStatus,

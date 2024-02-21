@@ -36,6 +36,8 @@ abstract class Entity {
 
   CombatStatus status;
 
+  // 装备提供
+  EffectList equipmentEffectList = EffectList();
   // 战斗buff提供
   EffectList buffEffectList = EffectList();
   // 职业提供
@@ -57,6 +59,8 @@ abstract class Entity {
         equipmentMap = equipmentMap ?? {}{
     slotRepository = SlotRepository(maxSlotLen);
     spd = _calculateSpd();
+
+    // todo equipment effect
 
     ensureEmptySafeMap(this.equipmentMap);
   }
@@ -127,23 +131,17 @@ abstract class Entity {
   void modifyOutgoingDamage(List<Damage> damageList) {
     EffectType type = EffectType.modifyOutgoingDamageNum;
 
-    equipmentMap.forEach((bodyPart, equipment) {
-      equipment.modifyOutgoingDamage(damageList);
-    });
-
-    modifyDamage(damageList, type, buffEffectList);
-    modifyDamage(damageList, type, jobEffectList);
+    modifyDamage(damageList, type, equipmentEffectList, this, true);
+    modifyDamage(damageList, type, buffEffectList, this, true);
+    modifyDamage(damageList, type, jobEffectList, this, true);
   }
 
   void modifyIncomingDamage(List<Damage> damageList) {
     EffectType type = EffectType.modifyIncomingDamageNum;
 
-    equipmentMap.forEach((bodyPart, equipment) {
-      equipment.modifyIncomingDamage(damageList);
-    });
-
-    modifyDamage(damageList, type, buffEffectList);
-    modifyDamage(damageList, type, jobEffectList);
+    modifyDamage(damageList, type, equipmentEffectList, this, false);
+    modifyDamage(damageList, type, buffEffectList, this, false);
+    modifyDamage(damageList, type, jobEffectList, this, false);
   }
 
   void _handleHpBelowZero() => finishCombat();

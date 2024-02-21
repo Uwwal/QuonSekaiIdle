@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:quon_sekai_idle/models/enum/world_type.dart';
 
-import '../models/world/combat/enemy.dart';
+import '../world/combat/enemy.dart';
 
-abstract class WorldInstances {
+abstract class WorldManager {
   static Map<String, dynamic> get(int id) {
     var map = _worldJsonList[id];
 
@@ -25,8 +25,8 @@ const _$WorldTypeEnumMap = {
 
 String _allWorldJson = '''
 [
-  {"enemyList": {"enemyList": [1, 2, 3], "weightList": [4, 5, 6]}, "type": 0},
-  {"enemyList": {"enemyList": [1, 2, 3], "weightList": [4, 5, 6]}, "type": 1}
+  {"id":0,"enemyList": {"enemyList": [1, 2, 3], "weightList": [4, 5, 6]}, "type": 0},
+  {"id":1,"enemyList": {"enemyList": [1, 2, 3], "weightList": [4, 5, 6]}, "type": 1}
 ]
 ''';
 // todo 补充json

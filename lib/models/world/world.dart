@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:quon_sekai_idle/models/world/player.dart';
 
-import '../../instances/world_instances.dart';
 import '../enum/world_type.dart';
+import '../managers/world_manager.dart';
 import 'combat/enemy.dart';
 
 class World{
@@ -11,7 +11,7 @@ class World{
   static World _world = World._internal(0);
 
   World._internal(this.id) {
-    var map = WorldInstances.get(id);
+    var map = WorldManager.get(id);
     enemyList = map['enemyList'];
     type = map['type'];
     // enemyList = EnemyList([1,2], [2,3]);
@@ -46,6 +46,11 @@ class World{
   Enemy generateEnemy() {
     enemy = enemyList.generateEnemy();
     return enemy;
+  }
+
+  void startCombat(){
+    Player.getPlayerInstance().startCombat();
+    enemy.startCombat();
   }
 
   void finishCombat() {

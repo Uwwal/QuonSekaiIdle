@@ -56,8 +56,9 @@ class Player extends Entity {
     executeFindEnemy = true;
     Timer(Duration(milliseconds: _getEnemyCoolDown()), (){
       if(executeFindEnemy){
-        target = World.getWorldInstance().generateEnemy();
-        startCombat();
+        var world = World.getWorldInstance();
+        target = world.generateEnemy();
+        world.startCombat();
       }
     });
   }

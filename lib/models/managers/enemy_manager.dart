@@ -1,4 +1,4 @@
-import '../models/world/combat/enemy.dart';
+import '../world/combat/enemy.dart';
 import 'dart:convert';
 
 // 对比用
@@ -9,8 +9,9 @@ Enemy(super.id, super.maxHp, super.maxSlotLen, super.level, super.actionInterval
 }
  */
 
-abstract class EnemyInstances {
+abstract class EnemyManager {
   static Enemy get(int id) {
+    // todo enemy factory -> get
     var enemyJson = _enemyJsonList[id];
     Map<String, dynamic> map = json.decode(enemyJson);
     return Enemy(map['id'], map['maxHp'], map['maxSlotLen'], map['level'],

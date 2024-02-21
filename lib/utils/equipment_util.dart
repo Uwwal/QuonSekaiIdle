@@ -1,4 +1,4 @@
-import '../instances/equipment_instances.dart';
+import '../models/managers/equipment_manager.dart';
 import '../models/world/equipment.dart';
 import '../models/enum/body_part.dart';
 

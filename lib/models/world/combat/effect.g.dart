@@ -21,8 +21,9 @@ Map<String, dynamic> _$EffectToJson(Effect instance) => <String, dynamic>{
     };
 
 const _$EffectTypeEnumMap = {
-  EffectType.modifyOutgoingDamageNum: 'modifyOutgoingDamageNum',
-  EffectType.modifyIncomingDamageNum: 'modifyIncomingDamageNum',
-  EffectType.modifyStatus: 'modifyStatus',
-  EffectType.modifyActionInterval: 'modifyActionInterval',
+  EffectType.modifyOutgoingDamageNum: 0,
+  EffectType.modifyIncomingDamageNum: 1,
+  EffectType.modifyStatus: 2,
+  EffectType.modifyActionInterval: 3,
+  EffectType.modifyEffectList: 4,
 };

@@ -1,5 +1,5 @@
-import '../models/enum/body_part.dart';
-import '../models/world/equipment.dart';
+import '../enum/body_part.dart';
+import '../world/equipment.dart';
 
 class EmptyHead extends Equipment {
   EmptyHead() : super("空", BodyPart.head, []);

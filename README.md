@@ -28,3 +28,11 @@ B:对槽序列压入2个种类为蓄力的 造成1点伤害
 则战斗动作顺序为BBABABBABABBABABBABA...
 
 ### 剩下的要写啥我忘了
+
+## 我随便写写后端逻辑
+
+### 发起战斗
+worldManager读个世界->player.findEnemy->world产生一个敌人->world.startCombat
+
+### 伤害处理流程
+player.action生成List<Damage>->player.modifyOutgoingDamage, 调每个
