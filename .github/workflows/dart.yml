@@ -47,9 +47,11 @@ jobs:
 
       - name: Commit and push DartDoc
         run: |
-            git add .
-            git commit -m "Update DartDoc"
-            git push origin doc
+          git config user.email "3476365499@qq.com"
+          git config user.name "Uwwal"
+          git add .
+          git commit -m "Update DartDoc"
+          git push origin doc
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
