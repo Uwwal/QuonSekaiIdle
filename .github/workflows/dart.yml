@@ -40,7 +40,7 @@ jobs:
       # Consider passing '--fatal-infos' for slightly stricter analysis.
 
       - name: Dart Doc
-        run: flutter pub run dartdoc
+        run: dart doc .
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
