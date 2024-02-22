@@ -14,14 +14,14 @@ Equipment _$EquipmentFromJson(Map<String, dynamic> json) => Equipment(
           .toList(),
       effectList: json['effectList'] == null
           ? null
-          : EffectList.fromJson(json['effectList'] as Map<String, dynamic>),
+          : EffectList(),
     );
 
 Map<String, dynamic> _$EquipmentToJson(Equipment instance) => <String, dynamic>{
       'name': instance.name,
       'bodyPart': _$BodyPartEnumMap[instance.bodyPart]!,
       'damageDiceList': instance.damageDiceList,
-      'effectList': instance.effectList,
+      //'effectList': instance.effectList,
     };
 
 const _$BodyPartEnumMap = {

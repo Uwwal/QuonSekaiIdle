@@ -1,3 +1,5 @@
+/// 实体的装备
+
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../utils/effect_util.dart';
@@ -11,6 +13,8 @@ part 'equipment.g.dart';
 
 // todo clear debug
 
+/// todo 需要重新构想关于id等应对以后的功能扩展
+/// 创建后根据id生成effectList
 class Equipment {
   void use() {
     // todo

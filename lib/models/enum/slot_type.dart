@@ -1,3 +1,5 @@
+/// 充能类型
+
 enum SlotType {
   empty,
   shapeChange,    // 形变

@@ -1,3 +1,5 @@
+/// 装备部位
+
 enum BodyPart {
   head,
   body,

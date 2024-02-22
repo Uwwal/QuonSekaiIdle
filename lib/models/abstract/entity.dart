@@ -1,3 +1,5 @@
+/// 抽象类, player和enemy继承此, 为游戏内实体.
+
 import 'dart:async';
 import 'dart:math';
 
@@ -25,10 +27,10 @@ abstract class Entity {
 
   int level;
 
-  // 行动间隔
+  /// 行动间隔
   int actionInterval;
 
-  // 仅做显示
+  /// 仅做显示
   late int spd;
 
   List<CombatAction> combatActionList;
@@ -36,6 +38,7 @@ abstract class Entity {
 
   CombatStatus status;
 
+  // todo 整合
   // 装备提供
   EffectList equipmentEffectList = EffectList();
   // 战斗buff提供
@@ -47,7 +50,9 @@ abstract class Entity {
 
   late Entity target;
 
-  bool executeCombat = false;
+  /// 战斗进行中
+  bool isExecuteCombat = false;
+  late Timer timer;
   /* field over */
   /* constructor start */
   Entity(this.id, this.maxHp, this.maxSlotLen, this.level, this.actionInterval,
@@ -56,28 +61,37 @@ abstract class Entity {
       : hp = maxHp,
         combatActionCoolDownList =
             List<int>.generate(combatActionList.length, (_) => 0),
-        equipmentMap = equipmentMap ?? {}{
+        equipmentMap = equipmentMap ?? {} {
     slotRepository = SlotRepository(maxSlotLen);
     spd = _calculateSpd();
 
-    // todo equipment effect
+    // todo equipment effect init
 
     ensureEmptySafeMap(this.equipmentMap);
   }
   /* constructor over */
   /* method start */
+  /// 根据ActionInterval计算spd, 用来显示
   int _calculateSpd() {
     // todo
     return 1;
   }
 
+  /// 获取行动间隔, 根据effect修改
   int _getActionInterval() {
     // todo
     return actionInterval;
   }
 
+  // todo 新增 get status
+
+  /// param: curActionInterval 当前行动间隔 单位ms
+  /// return: 下次行动间隔 单位ms
+  /// 遍历combatActionCoolDownList, 找到cd小于param的行动, 根据slot尝试执行
+  /// 如果执行成功则依照手部装备产生伤害, 对输出伤害进行加工, 标记成功执行战斗动作
+  /// 若执行失败则跳过
+  /// 遍历的同时检查最小cd, 如果本轮没有执行战斗动作, 则返回最小cd设置定时器
   int _action(int curActionInterval) {
-    // 返回: 执行成功 ? -1 : minCoolDown
     var minCoolDown = curActionInterval;
 
     var finish = false;
@@ -95,6 +109,7 @@ abstract class Entity {
           slotRepository.consumeSlot(action.consumeSlot);
           slotRepository.createSlot(action.createSlot);
 
+          // todo 不需要产生战斗伤害的行动
           var weapon = equipmentMap[BodyPart.hand];
           var damageList = weapon!.getDamage();
 
@@ -105,7 +120,8 @@ abstract class Entity {
           finish = true;
           combatActionCoolDownList[i] += action.coolDown;
         }
-        minCoolDown = 1;
+        // 似乎不需要1ms就来看看是否满足条件, 因为slot还没被修改
+        // minCoolDown = 1;
       } else {
         combatActionCoolDownList[i] -= curActionInterval;
         // update min
@@ -115,6 +131,7 @@ abstract class Entity {
     return finish ? -1 : minCoolDown;
   }
 
+  /// 承伤
   void handleIncomingDamage(List<Damage> damageList) {
     modifyIncomingDamage(damageList);
 
@@ -128,6 +145,7 @@ abstract class Entity {
     }
   }
 
+  /// 修改输出伤害
   void modifyOutgoingDamage(List<Damage> damageList) {
     EffectType type = EffectType.modifyOutgoingDamageNum;
 
@@ -136,6 +154,7 @@ abstract class Entity {
     modifyDamage(damageList, type, jobEffectList, this, true);
   }
 
+  /// 修改输入伤害
   void modifyIncomingDamage(List<Damage> damageList) {
     EffectType type = EffectType.modifyIncomingDamageNum;
 
@@ -144,28 +163,38 @@ abstract class Entity {
     modifyDamage(damageList, type, jobEffectList, this, false);
   }
 
+  /// 战斗胜利条件之血量低于0
   void _handleHpBelowZero() => finishCombat();
 
+  /// 完成战斗
   void finishCombat() {
-    executeCombat = false;
+    isExecuteCombat = false;
+    timer.cancel();
   }
 
-  Future<void> startCombat() async {
-    executeCombat = true;
+  /// 开始战斗
+  void startCombat() async {
+    // todo 战斗初始化
+    hp = maxHp;
+    isExecuteCombat = true;
     int curActionInterval = -1;
-    while (executeCombat) {
-      await Future.delayed(Duration(milliseconds: curActionInterval));
-      if (curActionInterval == -1) {
-        curActionInterval = _getActionInterval();
-      }
-      curActionInterval = _action(curActionInterval);
+
+    while (isExecuteCombat) {
+      timer = Timer(Duration(milliseconds: curActionInterval), () {
+        if (curActionInterval == -1) {
+          curActionInterval = _getActionInterval();
+        }
+        curActionInterval = _action(curActionInterval);
+      });
     }
   }
 
   @override
   bool operator ==(Object other) {
-    if(identical(this, other)){return true;}
-    switch(other.runtimeType){
+    if (identical(this, other)) {
+      return true;
+    }
+    switch (other.runtimeType) {
       case Entity:
         return id == (other as Entity).id;
       case int:

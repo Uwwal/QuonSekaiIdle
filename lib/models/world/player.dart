@@ -1,3 +1,5 @@
+/// 玩家实体
+
 import 'dart:async';
 
 import 'package:quon_sekai_idle/models/world/combat/status.dart';

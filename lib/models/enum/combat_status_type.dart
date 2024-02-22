@@ -1,3 +1,5 @@
+/// 战斗属性
+
 enum CombatStatusType {
   str,
   con,

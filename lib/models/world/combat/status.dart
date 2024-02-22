@@ -1,3 +1,5 @@
+/// 实体的战斗属性
+
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../enum/combat_status_type.dart';

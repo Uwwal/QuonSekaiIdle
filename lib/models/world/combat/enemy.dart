@@ -1,3 +1,5 @@
+/// 战斗敌人
+
 import 'dart:math';
 
 import 'package:quon_sekai_idle/models/world/combat/status.dart';
@@ -54,6 +56,7 @@ class Enemy extends Entity implements Comparable<Enemy> {
       };
 }
 
+/// world的属性, 根据enemyList的id和权重weightList生成敌人
 @JsonSerializable()
 class EnemyList {
   List<int> enemyList;
@@ -85,8 +88,9 @@ class EnemyList {
   }
 }
 
+/// 实例化过的敌人存储在这里
 abstract class EnemyPool {
-  // 存储已实例化过的Enemy
+  /// 存储已实例化过的Enemy
   static final List<Enemy> _pool = [];
 
   static int _findIndex(int id) {
@@ -96,7 +100,7 @@ abstract class EnemyPool {
 
       var sub = enemy.id - id;
       if (sub < 0) {
-        // enemy.id < id
+        /// enemy.id < id
         return -1;
       } else if (sub == 0) {
         return index;
@@ -107,16 +111,19 @@ abstract class EnemyPool {
 
   static Enemy _createObject(int id) => EnemyManager.get(id);
 
+  /// 外部归还不要的敌人
   static void repayEnemy(Enemy enemy) {
     _pool.add(enemy);
     _pool.sort();
   }
 
+  /// 外部借用实例化的敌人
   static Enemy lendEnemy(int id) {
     if (_pool.isEmpty) {
       return _createObject(id);
     } else {
       var index = _findIndex(id);
+
       return index == -1 ? _createObject(id) : _pool.removeAt(index);
     }
   }

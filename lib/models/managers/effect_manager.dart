@@ -1,3 +1,5 @@
+/// 根据id返回实例化的Effect
+
 import 'dart:convert';
 
 import 'package:quon_sekai_idle/models/world/combat/effect.dart';

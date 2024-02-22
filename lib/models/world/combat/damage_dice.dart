@@ -1,3 +1,5 @@
+/// weapon的属性, 用于产出最原始的伤害以供后续修饰
+
 import 'dart:math';
 
 import 'package:json_annotation/json_annotation.dart';
@@ -7,6 +9,7 @@ import 'damage.dart';
 
 part 'damage_dice.g.dart';
 
+/// 3d5+2 对应 3 times +2 min 5+2 max
 @JsonSerializable()
 class DamageDice{
   DamageType type;

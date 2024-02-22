@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quon_sekai_idle/models/enum/slot_type.dart';
 import 'package:quon_sekai_idle/models/world/combat/action.dart';
@@ -8,6 +10,14 @@ import 'package:quon_sekai_idle/models/world/combat/status.dart';
 import 'package:quon_sekai_idle/utils/tuple_util.dart';
 
 void main() {
+  late Timer timer;
+
+  void foo() async{
+    timer = Timer(const Duration(milliseconds: 300), () => print('timer done')
+    );
+
+  }
+
   test('to json', () {
     var enemy = Enemy(
         1,
@@ -61,5 +71,11 @@ void main() {
     // var world2 = World.fromJson(json);
 
     print(1);
+  });
+
+  test('timer cancel', () async{
+    print(1);
+    foo();
+    //timer.cancel();
   });
 }

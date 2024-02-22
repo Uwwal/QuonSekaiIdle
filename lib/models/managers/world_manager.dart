@@ -1,3 +1,5 @@
+/// 根据id返回实例化World所需的参数
+
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';

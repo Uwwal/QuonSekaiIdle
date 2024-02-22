@@ -1,3 +1,5 @@
+/// 实体当前的充能槽
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:quon_sekai_idle/models/world/combat/slot.dart';
 import 'package:quon_sekai_idle/utils/combat_slot_util.dart';
@@ -7,6 +9,7 @@ import '../../enum/slot_type.dart';
 
 part 'slot_repository.g.dart';
 
+/// entity的field
 class SlotRepository {
   Slot? head;
   Slot? tail;
@@ -40,6 +43,7 @@ class SlotRepository {
     slotMap[type]!.remove(slot);
   }
 
+  /// len -= num
   bool contractSlot(int num) {
     if (num > len) {
       return false;
@@ -60,6 +64,7 @@ class SlotRepository {
     return true;
   }
 
+  /// len += num
   void expandSlot(int num) {
     for (var curLen = len; curLen < len + num; curLen++) {
       Slot slot = Slot(index: curLen);
@@ -82,6 +87,7 @@ class SlotRepository {
     return slotMap[type]!.length;
   }
 
+  /// action消耗充能
   void _consumeStandardSlot(SlotType type, int num) {
     for (int i = 0; i < num; i++) {
       var slot = slotMap[type]![0];
@@ -95,6 +101,8 @@ class SlotRepository {
     slotMap[defaultType]!.sort();
   }
 
+  /// 检测是否有足够充能
+  /// 以后可能会有检索规则扩展
   bool hasEnoughSlots(
     SlotTupleList consumeSlotTupleList,
     SlotTupleList createSlotTupleList,
@@ -117,6 +125,7 @@ class SlotRepository {
     return consumeNum >= 0;
   }
 
+  /// action消耗充能
   void consumeSlot(SlotTupleList slotTupleList) {
     for (var tuple in slotTupleList.list) {
       var type = tuple[0].type;
@@ -126,6 +135,7 @@ class SlotRepository {
     }
   }
 
+  /// 用于外部显示
   List<Slot> generateSlotList() {
     List<Slot> res = [];
 
@@ -138,6 +148,7 @@ class SlotRepository {
     return res;
   }
 
+  /// action生成充能
   void _createStandardSlot(SlotType type, int num) {
     for (int i = 0; i < num; i++) {
       var slot = slotMap[defaultType]![0];
@@ -151,6 +162,7 @@ class SlotRepository {
     slotMap[type]!.sort();
   }
 
+  /// action生成充能
   void createSlot(SlotTupleList slotTupleList) {
     for (var tuple in slotTupleList.list) {
       var type = tuple[0].type;
@@ -161,6 +173,8 @@ class SlotRepository {
   }
 }
 
+/// todo 需要重构 目前不够方便, 序列化也有点问题
+/// 主要给action使用
 @JsonSerializable()
 class SlotTupleList {
   List<Tuple<Slot, int>> list;

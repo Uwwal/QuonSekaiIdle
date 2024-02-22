@@ -1,3 +1,4 @@
+/// 世界
 import 'package:json_annotation/json_annotation.dart';
 import 'package:quon_sekai_idle/models/world/player.dart';
 
@@ -5,7 +6,7 @@ import '../enum/world_type.dart';
 import '../managers/world_manager.dart';
 import 'combat/enemy.dart';
 
-class World{
+class World {
   // 静态唯一实例，不需要pool
   /* static instance start */
   static World _world = World._internal(0);
@@ -48,7 +49,7 @@ class World{
     return enemy;
   }
 
-  void startCombat(){
+  void startCombat() {
     Player.getPlayerInstance().startCombat();
     enemy.startCombat();
   }

@@ -1,15 +1,13 @@
+/// 正在生效的effect
+
 import 'dart:async';
 
-import 'package:json_annotation/json_annotation.dart';
-
+import '../../../constants/error_constants.dart';
 import 'effect.dart';
 import '../../enum/effect_type.dart';
 
-part 'effect_list.g.dart';
-
-// todo delete JsonSerial
-
-// @JsonSerializable()
+/// list和durationList一一对应, -1代表永续效果
+/// 用定时器去掉超时的effect
 class EffectList {
   List<Effect> list = [];
   // sort example: 1 2 3 4 5 -1 -1 -1
@@ -50,10 +48,7 @@ class EffectList {
     }
   }
 
-  factory EffectList.fromJson(Map<String, dynamic> json) =>
-      _$EffectListFromJson(json);
-  Map<String, dynamic> toJson() => _$EffectListToJson(this);
-
+  /// 感觉用不上, 参考list.addAll
   void addAll(EffectList other) {
     list.addAll(other.list);
     durationList.addAll(other.durationList);
@@ -65,6 +60,7 @@ class EffectList {
     modifyEffectList += other.modifyEffectList;
   }
 
+  /// 剪枝 = 0
   bool checkEffectTypeAboveZero(EffectType effectType) {
     switch (effectType) {
       case EffectType.modifyOutgoingDamageNum:
@@ -105,8 +101,8 @@ class EffectList {
       if (durationList.length > 1 && durationList[1] != -1) {
         await _timerManager.startTimer(duration);
       } else {
-        var stopDuration = _timerManager.stopTimer();
-        _minusDuration(stopDuration);
+        var lastTime = _timerManager.stopTimer();
+        _minusDuration(lastTime);
         await _timerManager.startTimer(duration);
       }
     }
@@ -117,6 +113,7 @@ class EffectList {
           effect.type == effectType && checkEffectTypeAboveZero(effectType))
       .toList();
 
+  /// 与removeEffect(list[0])类似
   void timeout() {
     var duration = durationList[0];
     list.removeAt(0);
@@ -144,31 +141,47 @@ class EffectList {
       }
     }
   }
+
+  // todo removeAt前修改一下type计数
+  void removeEffect(Effect effect){
+    var index = list.indexOf(effect);
+
+    if(index == -1){throw const FormatException(errorIndexOfEffectList);}
+
+    if(index == 0 && durationList[0] != -1){
+      var lastTime = _timerManager.stopTimer();
+      _minusDuration(lastTime);
+
+      if(durationList[1] != -1){
+        _timerManager.startTimer(durationList[1]);
+      }
+    }
+
+    list.removeAt(index);
+    durationList.removeAt(index);
+  }
 }
 
+/// 取消定时器
 class _TimerManager {
-  final Completer<void> _timerCompleter = Completer<void>();
+  late Timer timer;
 
   final EffectList effectList;
 
+  /// 因为其他原因取消定时器的话, 要让effectList中所有的duration减去经过的时间
   int lastTime = -1;
 
   Future<void> startTimer(int duration) async {
     lastTime = DateTime.now().millisecondsSinceEpoch;
 
-    await Future.delayed(Duration(seconds: duration));
+    timer = await Future.delayed(Duration(milliseconds: duration));
 
-    if (!_timerCompleter.isCompleted) {
-      effectList.timeout();
-
-      _timerCompleter.complete();
-    }
+    effectList.timeout();
   }
 
+  /// 调用后需要再调用_minusDuration
   int stopTimer() {
-    if (!_timerCompleter.isCompleted) {
-      _timerCompleter.complete();
-    }
+    timer.cancel();
 
     return DateTime.now().millisecondsSinceEpoch - lastTime;
   }
