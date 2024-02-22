@@ -47,10 +47,9 @@ jobs:
 
       - name: Commit and push DartDoc
         run: |
-          git config user.email "3476365499@qq.com"
-          git config user.name "Uwwal"
+          git remote add origin_with_token https://$QSITOKEN@github.com/Uwwal/QuonSekaiIdle.git
           git add .
-          git commit -m "Update DartDoc"
+          git commit -m "Update Dart Doc"
           git push origin doc
 
       # Your project will need to have tests in test/ and a dependency on
