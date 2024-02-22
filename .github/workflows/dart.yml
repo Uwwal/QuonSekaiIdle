@@ -51,7 +51,7 @@ jobs:
           git config --global user.name "Uwwal"
           git add .
           git commit -m "Update Dart Doc"
-          git push origin doc
+          git push --force origin doc
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
