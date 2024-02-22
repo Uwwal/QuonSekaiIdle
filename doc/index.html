@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 7.0.1-wip">
+  <meta name="description" content="quon_sekai_idle API docs, for the Dart programming language.">
+  <title>quon_sekai_idle - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">quon_sekai_idle package</li>
+  </ol>
+  <div class="self-name">quon_sekai_idle</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="quon_sekai_idle">quon_sekai_idle</h1>
+<p>A new Flutter project.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>This project is a starting point for a Flutter application.</p>
+<p>A few resources to get you started if this is your first Flutter project:</p>
+<ul>
+<li><a href="https://docs.flutter.dev/get-started/codelab">Lab: Write your first Flutter app</a></li>
+<li><a href="https://docs.flutter.dev/cookbook">Cookbook: Useful Flutter samples</a></li>
+</ul>
+<p>For help getting started with Flutter development, view the
+<a href="https://docs.flutter.dev/">online documentation</a>, which offers tutorials,
+samples, guidance on mobile development, and a full API reference.</p>
+<h2 id="">这里是大饼</h2>
+<h3 id="-2">核心玩法</h3>
+<p>规划你个人的战斗序列(combatActionList)，每个战斗动作使你的槽序列填充/去除指定数量的充能。</p>
+<p>举例：
+战斗序列：
+A:使槽序列弹出3个种类为蓄力的 造成3点伤害
+B:对槽序列压入2个种类为蓄力的 造成1点伤害</p>
+<p>则战斗动作顺序为BBABABBABABBABABBABA...</p>
+<h3 id="-3">剩下的要写啥我忘了</h3>
+<h2 id="-4">我随便写写后端逻辑</h2>
+<h3 id="-5">发起战斗</h3>
+<p>worldManager读个世界-&gt;player.findEnemy-&gt;world产生一个敌人-&gt;world.startCombat</p>
+<h3 id="-6">伤害处理流程</h3>
+<p>player.action生成List<damage>-&gt;player.modifyOutgoingDamage, 调每个</damage></p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="action">
+  <span class="name"><a href="models_world_combat_action/models_world_combat_action-library.html">action</a></span> 
+
+</dt>
+<dd>战斗行动相关
+</dd>
+
+          <dt id="app_constants">
+  <span class="name"><a href="constants_app_constants/constants_app_constants-library.html">app_constants</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="body_part">
+  <span class="name"><a href="models_enum_body_part/models_enum_body_part-library.html">body_part</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="colors">
+  <span class="name"><a href="constants_colors/constants_colors-library.html">colors</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="combat_slot_util">
+  <span class="name"><a href="utils_combat_slot_util/utils_combat_slot_util-library.html">combat_slot_util</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="combat_status_type">
+  <span class="name"><a href="models_enum_combat_status_type/models_enum_combat_status_type-library.html">combat_status_type</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="create_character_page">
+  <span class="name"><a href="pages_create_character_page/pages_create_character_page-library.html">create_character_page</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="custom_theme">
+  <span class="name"><a href="themes_custom_theme/themes_custom_theme-library.html">custom_theme</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="damage">
+  <span class="name"><a href="models_world_combat_damage/models_world_combat_damage-library.html">damage</a></span> 
+
+</dt>
+<dd>战斗中产生的伤害
+</dd>
+
+          <dt id="damage_dice">
+  <span class="name"><a href="models_world_combat_damage_dice/models_world_combat_damage_dice-library.html">damage_dice</a></span> 
+
+</dt>
+<dd>weapon的属性, 用于产出最原始的伤害以供后续修饰
+</dd>
+
+          <dt id="damage_type">
+  <span class="name"><a href="models_enum_damage_type/models_enum_damage_type-library.html">damage_type</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="effect">
+  <span class="name"><a href="models_world_combat_effect/models_world_combat_effect-library.html">effect</a></span> 
+
+</dt>
+<dd>战斗中产生的效果
+</dd>
+
+          <dt id="effect_list">
+  <span class="name"><a href="models_world_combat_effect_list/models_world_combat_effect_list-library.html">effect_list</a></span> 
+
+</dt>
+<dd>正在生效的effect
+</dd>
+
+          <dt id="effect_manager">
+  <span class="name"><a href="models_managers_effect_manager/models_managers_effect_manager-library.html">effect_manager</a></span> 
+
+</dt>
+<dd>根据id返回实例化的Effect
+</dd>
+
+          <dt id="effect_type">
+  <span class="name"><a href="models_enum_effect_type/models_enum_effect_type-library.html">effect_type</a></span> 
+
+</dt>
+<dd>effect类型
+</dd>
+
+          <dt id="effect_util">
+  <span class="name"><a href="utils_effect_util/utils_effect_util-library.html">effect_util</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="enemy">
+  <span class="name"><a href="models_world_combat_enemy/models_world_combat_enemy-library.html">enemy</a></span> 
+
+</dt>
+<dd>战斗敌人
+</dd>
+
+          <dt id="enemy_manager">
+  <span class="name"><a href="models_managers_enemy_manager/models_managers_enemy_manager-library.html">enemy_manager</a></span> 
+
+</dt>
+<dd>根据id返回实例化的Enemy
+</dd>
+
+          <dt id="entity">
+  <span class="name"><a href="models_abstract_entity/models_abstract_entity-library.html">entity</a></span> 
+
+</dt>
+<dd>抽象类, player和enemy继承此, 为游戏内实体.
+</dd>
+
+          <dt id="equipment">
+  <span class="name"><a href="models_world_equipment/models_world_equipment-library.html">equipment</a></span> 
+
+</dt>
+<dd>实体的装备
+</dd>
+
+          <dt id="equipment_manager">
+  <span class="name"><a href="models_managers_equipment_manager/models_managers_equipment_manager-library.html">equipment_manager</a></span> 
+
+</dt>
+<dd>todo 等待重写
+</dd>
+
+          <dt id="equipment_util">
+  <span class="name"><a href="utils_equipment_util/utils_equipment_util-library.html">equipment_util</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="error_constants">
+  <span class="name"><a href="constants_error_constants/constants_error_constants-library.html">error_constants</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="game_page">
+  <span class="name"><a href="pages_game_page/pages_game_page-library.html">game_page</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="main">
+  <span class="name"><a href="main/main-library.html">main</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="main_route">
+  <span class="name"><a href="routes_main_route/routes_main_route-library.html">main_route</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="player">
+  <span class="name"><a href="models_world_player/models_world_player-library.html">player</a></span> 
+
+</dt>
+<dd>玩家实体
+</dd>
+
+          <dt id="player_constants">
+  <span class="name"><a href="constants_player_constants/constants_player_constants-library.html">player_constants</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="slot">
+  <span class="name"><a href="models_world_combat_slot/models_world_combat_slot-library.html">slot</a></span> 
+
+</dt>
+<dd>充能
+</dd>
+
+          <dt id="slot_repository">
+  <span class="name"><a href="models_world_combat_slot_repository/models_world_combat_slot_repository-library.html">slot_repository</a></span> 
+
+</dt>
+<dd>实体当前的充能槽
+</dd>
+
+          <dt id="slot_type">
+  <span class="name"><a href="models_enum_slot_type/models_enum_slot_type-library.html">slot_type</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="startup_button_util">
+  <span class="name"><a href="utils_startup_button_util/utils_startup_button_util-library.html">startup_button_util</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="startup_page">
+  <span class="name"><a href="pages_startup_page/pages_startup_page-library.html">startup_page</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="startup_page_widget">
+  <span class="name"><a href="widgets_startup_page_widget/widgets_startup_page_widget-library.html">startup_page_widget</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="status">
+  <span class="name"><a href="models_world_combat_status/models_world_combat_status-library.html">status</a></span> 
+
+</dt>
+<dd>实体的战斗属性
+</dd>
+
+          <dt id="tuple_util">
+  <span class="name"><a href="utils_tuple_util/utils_tuple_util-library.html">tuple_util</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="world">
+  <span class="name"><a href="models_world_world/models_world_world-library.html">world</a></span> 
+
+</dt>
+<dd>世界
+</dd>
+
+          <dt id="world_manager">
+  <span class="name"><a href="models_managers_world_manager/models_managers_world_manager-library.html">world_manager</a></span> 
+
+</dt>
+<dd>根据id返回实例化World所需的参数
+</dd>
+
+          <dt id="world_type">
+  <span class="name"><a href="models_enum_world_type/models_enum_world_type-library.html">world_type</a></span> 
+
+</dt>
+<dd>世界类型
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li class="self-crumb">quon_sekai_idle package</li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">quon_sekai_idle</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="models_world_combat_action/models_world_combat_action-library.html">action</a></li>
+      <li><a href="constants_app_constants/constants_app_constants-library.html">app_constants</a></li>
+      <li><a href="models_enum_body_part/models_enum_body_part-library.html">body_part</a></li>
+      <li><a href="constants_colors/constants_colors-library.html">colors</a></li>
+      <li><a href="utils_combat_slot_util/utils_combat_slot_util-library.html">combat_slot_util</a></li>
+      <li><a href="models_enum_combat_status_type/models_enum_combat_status_type-library.html">combat_status_type</a></li>
+      <li><a href="pages_create_character_page/pages_create_character_page-library.html">create_character_page</a></li>
+      <li><a href="themes_custom_theme/themes_custom_theme-library.html">custom_theme</a></li>
+      <li><a href="models_world_combat_damage/models_world_combat_damage-library.html">damage</a></li>
+      <li><a href="models_world_combat_damage_dice/models_world_combat_damage_dice-library.html">damage_dice</a></li>
+      <li><a href="models_enum_damage_type/models_enum_damage_type-library.html">damage_type</a></li>
+      <li><a href="models_world_combat_effect/models_world_combat_effect-library.html">effect</a></li>
+      <li><a href="models_world_combat_effect_list/models_world_combat_effect_list-library.html">effect_list</a></li>
+      <li><a href="models_managers_effect_manager/models_managers_effect_manager-library.html">effect_manager</a></li>
+      <li><a href="models_enum_effect_type/models_enum_effect_type-library.html">effect_type</a></li>
+      <li><a href="utils_effect_util/utils_effect_util-library.html">effect_util</a></li>
+      <li><a href="models_world_combat_enemy/models_world_combat_enemy-library.html">enemy</a></li>
+      <li><a href="models_managers_enemy_manager/models_managers_enemy_manager-library.html">enemy_manager</a></li>
+      <li><a href="models_abstract_entity/models_abstract_entity-library.html">entity</a></li>
+      <li><a href="models_world_equipment/models_world_equipment-library.html">equipment</a></li>
+      <li><a href="models_managers_equipment_manager/models_managers_equipment_manager-library.html">equipment_manager</a></li>
+      <li><a href="utils_equipment_util/utils_equipment_util-library.html">equipment_util</a></li>
+      <li><a href="constants_error_constants/constants_error_constants-library.html">error_constants</a></li>
+      <li><a href="pages_game_page/pages_game_page-library.html">game_page</a></li>
+      <li><a href="main/main-library.html">main</a></li>
+      <li><a href="routes_main_route/routes_main_route-library.html">main_route</a></li>
+      <li><a href="models_world_player/models_world_player-library.html">player</a></li>
+      <li><a href="constants_player_constants/constants_player_constants-library.html">player_constants</a></li>
+      <li><a href="models_world_combat_slot/models_world_combat_slot-library.html">slot</a></li>
+      <li><a href="models_world_combat_slot_repository/models_world_combat_slot_repository-library.html">slot_repository</a></li>
+      <li><a href="models_enum_slot_type/models_enum_slot_type-library.html">slot_type</a></li>
+      <li><a href="utils_startup_button_util/utils_startup_button_util-library.html">startup_button_util</a></li>
+      <li><a href="pages_startup_page/pages_startup_page-library.html">startup_page</a></li>
+      <li><a href="widgets_startup_page_widget/widgets_startup_page_widget-library.html">startup_page_widget</a></li>
+      <li><a href="models_world_combat_status/models_world_combat_status-library.html">status</a></li>
+      <li><a href="utils_tuple_util/utils_tuple_util-library.html">tuple_util</a></li>
+      <li><a href="models_world_world/models_world_world-library.html">world</a></li>
+      <li><a href="models_managers_world_manager/models_managers_world_manager-library.html">world_manager</a></li>
+      <li><a href="models_enum_world_type/models_enum_world_type-library.html">world_type</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    quon_sekai_idle
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

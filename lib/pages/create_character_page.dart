@@ -47,6 +47,7 @@ class _CreateCharacterPageState extends State<CreateCharacterPage> {
       });
     } else {
       Navigator.pushNamed(context, '/game page', arguments: name);
+      _nameController.dispose();
     }
   }
 

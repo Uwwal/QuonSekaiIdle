@@ -13,7 +13,7 @@ class StartupPage extends StatelessWidget {
       body: Align(
         alignment: Alignment.center,
         child: Padding(
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.fromLTRB(25,25,25,10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -32,7 +32,7 @@ class StartupPage extends StatelessWidget {
 
                 // Icon
                 const Image(
-                  image: AssetImage('lib/asserts/images/magic_box.png'),
+                  image: AssetImage('lib/assets/images/magic_box.png'),
                   height: startupPageIconHeight,
                 ),
 
